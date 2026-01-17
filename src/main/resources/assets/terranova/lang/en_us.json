@@ -1,7 +1,7 @@
 {
   "itemGroup.terranova": "Example Mod Tab",
   "block.terranova.example_block": "Example Block",
-  "item.terranova.example_item": "Example Item",
+  "item.terranova.luminescence_shards": "Luminescence Shards",
 
   "terranova.configuration.title": "Terra Nova Configs",
   "terranova.configuration.section.terranova.common.toml": "Terra Nova Configs",
