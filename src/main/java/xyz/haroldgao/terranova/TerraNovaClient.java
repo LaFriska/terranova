@@ -12,7 +12,7 @@ import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 
 // This class will not load on dedicated servers. Accessing client side code from here is safe.
 @Mod(value = TerraNova.MODID, dist = Dist.CLIENT)
-// You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
+// You can use EventBusSubscriber to automatically attachToEventBus all static methods in the class annotated with @SubscribeEvent
 @EventBusSubscriber(modid = TerraNova.MODID, value = Dist.CLIENT)
 public class TerraNovaClient {
     public TerraNovaClient(ModContainer container) {

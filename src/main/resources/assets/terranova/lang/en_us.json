@@ -1,6 +1,5 @@
 {
-  "itemGroup.terranova": "Example Mod Tab",
-  "block.terranova.example_block": "Example Block",
+  "block.terranova.illuminated_ice": "Illuminated Ice",
   "item.terranova.luminescence_shards": "Luminescence Shards",
 
   "terranova.configuration.title": "Terra Nova Configs",
