@@ -3,7 +3,6 @@ package xyz.haroldgao.terranova.block;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -27,7 +26,7 @@ public final class BlockRegistry implements TNRegistry {
 
     public final DeferredRegister.Blocks blocks = DeferredRegister.createBlocks(TerraNova.MODID);
 
-    public final DeferredBlock<HalfTransparentBlock> illuminated_ice = registerBlock("illuminated_ice",
+    public final DeferredBlock<HalfTransparentBlock> luminescent_ice = registerBlock("luminescent_ice",
             registryName -> new HalfTransparentBlock(
                     BlockBehaviour.Properties.of()
                             .setId(ResourceKey.create(Registries.BLOCK, registryName))
@@ -36,6 +35,7 @@ public final class BlockRegistry implements TNRegistry {
                             .friction(0.989F)
                             .lightLevel(s -> 15)
                             .sound(SoundType.GLASS)
+                            .noOcclusion()
             ));
 
     private BlockRegistry(){
@@ -59,7 +59,7 @@ public final class BlockRegistry implements TNRegistry {
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
-            event.accept(illuminated_ice.get());
+            event.accept(luminescent_ice.get());
         }
     }
 

@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "terranova:block/illuminated_ice"
+    "model": "terranova:block/luminescent_ice"
   }
 }
