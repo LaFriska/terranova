@@ -1,4 +1,4 @@
-package xyz.haroldgao.terranova.items;
+package xyz.haroldgao.terranova.item;
 
 import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.registries.DeferredItem;

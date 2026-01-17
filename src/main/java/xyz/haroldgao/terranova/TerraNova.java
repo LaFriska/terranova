@@ -9,8 +9,8 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import org.slf4j.Logger;
 
-import static xyz.haroldgao.terranova.items.Items.ITEMS;
-import static xyz.haroldgao.terranova.items.Items.LUMINESCENCE_SHARDS;
+import static xyz.haroldgao.terranova.item.Items.ITEMS;
+import static xyz.haroldgao.terranova.item.Items.LUMINESCENCE_SHARDS;
 
 @Mod(TerraNova.MODID)
 public class TerraNova {
