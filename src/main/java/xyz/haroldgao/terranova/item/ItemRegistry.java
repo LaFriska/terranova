@@ -25,8 +25,8 @@ public final class ItemRegistry implements TNRegistry {
     /** {@link DeferredRegister} for all additional items. */
     public final DeferredRegister.Items items = DeferredRegister.createItems(MODID);
 
-    public final DeferredItem<Item> luminescence_shards
-            = items.registerSimpleItem("luminescence_shards", p -> new Item.Properties());
+    public final DeferredItem<Item> luminescence
+            = items.registerSimpleItem("luminescence", p -> new Item.Properties());
 
     /**
      * Handler which listens for {@link BuildCreativeModeTabContentsEvent}, adding
@@ -34,7 +34,7 @@ public final class ItemRegistry implements TNRegistry {
      * */
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
-            event.accept(luminescence_shards.get());
+            event.accept(luminescence.get());
         }
     }
 

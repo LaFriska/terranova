@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "terranova:item/luminescence_shards"
+    "model": "terranova:item/luminescence"
   }
 }

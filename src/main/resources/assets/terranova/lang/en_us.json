@@ -1,6 +1,6 @@
 {
   "block.terranova.luminescent_ice": "Luminescent Ice",
-  "item.terranova.luminescence_shards": "Luminescence Shards",
+  "item.terranova.luminescence": "Luminescence",
 
   "terranova.configuration.title": "Terra Nova Configs",
   "terranova.configuration.section.terranova.common.toml": "Terra Nova Configs",
