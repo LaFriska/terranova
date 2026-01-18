@@ -5,10 +5,13 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HalfTransparentBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.lighting.BlockLightEngine;
+import net.minecraft.world.level.lighting.LevelLightEngine;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
@@ -35,6 +38,7 @@ public final class BlockRegistry implements TNRegistry {
                             .friction(0.989F)
                             .lightLevel(s -> 15)
                             .sound(SoundType.GLASS)
+                            .isRedstoneConductor((bs,bg,bp) -> false)
                             .noOcclusion()
             ));
 
