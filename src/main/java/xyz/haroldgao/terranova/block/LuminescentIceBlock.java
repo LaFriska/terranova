@@ -12,7 +12,7 @@ public class LuminescentIceBlock extends HalfTransparentBlock {
     public static final BlockBehaviour.Properties PROPERTIES =
             BlockBehaviour.Properties.of()
                     .mapColor(MapColor.ICE)
-                    .strength(3.5F)
+                    .strength(1.0F)
                     .friction(0.989F)
                     .lightLevel(s -> 15)
                     .sound(SoundType.GLASS)
