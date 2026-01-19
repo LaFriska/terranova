@@ -5,7 +5,7 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 
-public class LuminescentIce extends HalfTransparentBlock {
+public class LuminescentIceBlock extends HalfTransparentBlock {
 
     public static final String ID = "luminescent_ice";
 
@@ -19,7 +19,7 @@ public class LuminescentIce extends HalfTransparentBlock {
                     .isRedstoneConductor((bs,bg,bp) -> false)
                     .noOcclusion();
 
-    public LuminescentIce(Properties prop) {
+    public LuminescentIceBlock(Properties prop) {
         super(prop);
     }
 }

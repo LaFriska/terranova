@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "I": "minecraft:blue_ice",
+    "L": "terranova:luminescence"
+  },
+  "pattern": [
+    "III",
+    "ILI",
+    "III"
+  ],
+  "result": {
+    "count": 8,
+    "id": "terranova:luminescent_ice"
+  }
+}

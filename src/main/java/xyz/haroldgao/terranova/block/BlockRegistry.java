@@ -7,6 +7,7 @@ import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HalfTransparentBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -23,38 +24,25 @@ public final class BlockRegistry implements TNRegistry {
 
     public final DeferredRegister.Blocks blocks = DeferredRegister.createBlocks(TerraNova.MODID);
 
-    public final DeferredBlock<HalfTransparentBlock> luminescent_ice = registerBlock(LuminescentIce.ID,
-            r -> new LuminescentIce(LuminescentIce.PROPERTIES.setId(ResourceKey.create(Registries.BLOCK, r))));
-
-//    public final DeferredBlock<HalfTransparentBlock> luminescent_ice = registerBlock("luminescent_ice",
-//            registryName -> new HalfTransparentBlock(
-//                    BlockBehaviour.Properties.of()
-//
-//                            .mapColor(MapColor.ICE)
-//                            .strength(3.5F)
-//                            .friction(0.989F)
-//                            .lightLevel(s -> 15)
-//                            .sound(SoundType.GLASS)
-//                            .isRedstoneConductor((bs,bg,bp) -> false)
-//                            .noOcclusion()
-//                            .setId(ResourceKey.create(Registries.BLOCK, registryName))
-//            ));
+    public final DeferredBlock<HalfTransparentBlock> luminescent_ice
+            = registerBlock(LuminescentIceBlock.ID, LuminescentIceBlock::new, LuminescentIceBlock.PROPERTIES);
 
     private BlockRegistry(){
     }
 
-    /**
-     * Courtesy to Kaupenjoe (https://github.com/Tutorials-By-Kaupenjoe/NeoForge-Tutorial-1.21.X)
-     * */
+    private <T extends Block> DeferredBlock<T> registerBlock(String name,
+                                                             Function<BlockBehaviour.Properties, T> func,
+                                                             BlockBehaviour.Properties prop){
+        return registerBlock(name, r -> func.apply(prop.setId(ResourceKey.create(Registries.BLOCK, r))));
+    }
+
     private <T extends Block> DeferredBlock<T> registerBlock(String name, Function<Identifier, ? extends T> func) {
         DeferredBlock<T> toReturn = blocks.register(name, func);
         registerBlockItem(name, toReturn);
         return toReturn;
     }
 
-    /**
-     * Courtesy to Kaupenjoe (https://github.com/Tutorials-By-Kaupenjoe/NeoForge-Tutorial-1.21.X)
-     * */
+
     private <T extends Block> void registerBlockItem(String name, DeferredBlock<T> block) {
         ItemRegistry.getInstance().items.registerSimpleBlockItem(name, block, Item.Properties::new);
     }
