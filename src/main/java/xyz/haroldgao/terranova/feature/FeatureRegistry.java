@@ -16,7 +16,8 @@ public class FeatureRegistry implements EventBusAttachable {
     public final DeferredRegister<Feature<?>> features = DeferredRegister.create(BuiltInRegistries.FEATURE, TerraNova.MODID);
 
     public final DeferredHolder<Feature<?>, LuminescentIceSpikeFeature> luminescentIceSpike =
-            features.register("luminescent_ice_spike", () -> new LuminescentIceSpikeFeature(NoneFeatureConfiguration.CODEC));
+            features.register(LuminescentIceSpikeFeature.NAME,
+                    () -> new LuminescentIceSpikeFeature(NoneFeatureConfiguration.CODEC));
 
     private FeatureRegistry(){
     }
