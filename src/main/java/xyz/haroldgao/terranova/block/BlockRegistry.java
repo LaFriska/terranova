@@ -12,13 +12,13 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import xyz.haroldgao.terranova.TNRegistry;
+import xyz.haroldgao.terranova.EventBusAttachable;
 import xyz.haroldgao.terranova.TerraNova;
 import xyz.haroldgao.terranova.item.ItemRegistry;
 
 import java.util.function.Function;
 
-public final class BlockRegistry implements TNRegistry {
+public final class BlockRegistry implements EventBusAttachable {
 
     private static BlockRegistry SINGLETON = null;
 

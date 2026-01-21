@@ -6,7 +6,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import xyz.haroldgao.terranova.TNRegistry;
+import xyz.haroldgao.terranova.EventBusAttachable;
 
 import static xyz.haroldgao.terranova.TerraNova.MODID;
 
@@ -15,7 +15,7 @@ import static xyz.haroldgao.terranova.TerraNova.MODID;
  * registered items in this mod. This class is a singleton, which is instantiated on
  * the mod's entry point.
  * */
-public final class ItemRegistry implements TNRegistry {
+public final class ItemRegistry implements EventBusAttachable {
 
     private static ItemRegistry SINGLETON = null;
 

@@ -2,7 +2,7 @@ package xyz.haroldgao.terranova;
 
 import net.neoforged.bus.api.IEventBus;
 
-public interface TNRegistry {
+public interface EventBusAttachable {
 
     void attachToEventBus(IEventBus eventBus);
 
