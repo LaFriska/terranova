@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.IceSpikeFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-import xyz.haroldgao.terranova.block.BlockRegistry;
+import xyz.haroldgao.terranova.block.ModBlocks;
 
 public class LuminescentIceSpikeFeature extends IceSpikeFeature {
 
@@ -114,7 +114,7 @@ public class LuminescentIceSpikeFeature extends IceSpikeFeature {
     }
 
     private void place(WorldGenLevel worldgenlevel, BlockPos blockpos, RandomSource randomSource) {
-        BlockState placedBlock = randomSource.nextInt(LUMINESCENCE_RARITY) == 0 ? BlockRegistry.getInstance().luminescent_ice.get().defaultBlockState()
+        BlockState placedBlock = randomSource.nextInt(LUMINESCENCE_RARITY) == 0 ? ModBlocks.getInstance().luminescent_ice.get().defaultBlockState()
                                                                                 : Blocks.PACKED_ICE.defaultBlockState();
         this.setBlock(worldgenlevel, blockpos, placedBlock);
     }

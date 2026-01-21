@@ -9,9 +9,9 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import xyz.haroldgao.terranova.EventBusAttachable;
 import xyz.haroldgao.terranova.TerraNova;
 
-public class FeatureRegistry implements EventBusAttachable {
+public class ModFeatures implements EventBusAttachable {
 
-    private static FeatureRegistry SINGLETON = null;
+    private static ModFeatures SINGLETON = null;
 
     public final DeferredRegister<Feature<?>> features = DeferredRegister.create(BuiltInRegistries.FEATURE, TerraNova.MODID);
 
@@ -19,7 +19,7 @@ public class FeatureRegistry implements EventBusAttachable {
             features.register(LuminescentIceSpikeFeature.NAME,
                     () -> new LuminescentIceSpikeFeature(NoneFeatureConfiguration.CODEC));
 
-    private FeatureRegistry(){
+    private ModFeatures(){
     }
 
 
@@ -28,9 +28,9 @@ public class FeatureRegistry implements EventBusAttachable {
         features.register(eventBus);
     }
 
-    public static FeatureRegistry getInstance(){
+    public static ModFeatures getInstance(){
         if(SINGLETON == null)
-            SINGLETON = new FeatureRegistry();
+            SINGLETON = new ModFeatures();
         return SINGLETON;
     }
 

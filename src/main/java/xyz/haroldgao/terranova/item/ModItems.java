@@ -15,11 +15,11 @@ import static xyz.haroldgao.terranova.TerraNova.MODID;
  * registered items in this mod. This class is a singleton, which is instantiated on
  * the mod's entry point.
  * */
-public final class ItemRegistry implements EventBusAttachable {
+public final class ModItems implements EventBusAttachable {
 
-    private static ItemRegistry SINGLETON = null;
+    private static ModItems SINGLETON = null;
 
-    private ItemRegistry(){
+    private ModItems(){
     }
 
     /** {@link DeferredRegister} for all additional items. */
@@ -44,9 +44,9 @@ public final class ItemRegistry implements EventBusAttachable {
         eventBus.addListener(this::addCreative);
     }
 
-    public static ItemRegistry getInstance(){
+    public static ModItems getInstance(){
         if(SINGLETON == null){
-            SINGLETON = new ItemRegistry();
+            SINGLETON = new ModItems();
         }
         return SINGLETON;
     }
