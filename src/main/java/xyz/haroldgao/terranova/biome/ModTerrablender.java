@@ -9,6 +9,6 @@ public class ModTerrablender {
     public static void registerBiomes() {
         Regions.register(new ModOverworldRegion(Identifier.fromNamespaceAndPath(TerraNova.MODID, "overworld"),
                 RegionType.OVERWORLD,
-                5));
+                32));
     }
 }
