@@ -30,9 +30,9 @@ public class TerraNova {
 
 
     public TerraNova(IEventBus modEventBus, ModContainer modContainer) {
-        ModItems.getInstance().attachToEventBus(modEventBus);
-        ModBlocks.getInstance().attachToEventBus(modEventBus);
-        ModFeatures.getInstance().attachToEventBus(modEventBus);
+        ModItems.attachToEventBus(modEventBus);
+        ModBlocks.attachToEventBus(modEventBus);
+        ModFeatures.attachToEventBus(modEventBus);
         ModTerrablender.registerBiomes();
 //        ConfiguredFeatureRegistry.CONFIGURED.register(modEventBus);
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us

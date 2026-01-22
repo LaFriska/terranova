@@ -15,7 +15,7 @@ import static xyz.haroldgao.terranova.TerraNova.MODID;
  * registered items in this mod. This class is a singleton, which is instantiated on
  * the mod's entry point.
  * */
-public final class ModItems implements EventBusAttachable {
+public final class ModItems {
 
     private static ModItems SINGLETON = null;
 
@@ -23,25 +23,14 @@ public final class ModItems implements EventBusAttachable {
     }
 
     /** {@link DeferredRegister} for all additional items. */
-    public final DeferredRegister.Items items = DeferredRegister.createItems(MODID);
+    public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);
 
-    public final DeferredItem<Item> luminescence
-            = items.registerSimpleItem("luminescence", p -> new Item.Properties());
+    public static final DeferredItem<Item> LUMINESCENCE
+            = ITEMS.registerSimpleItem("luminescence", p -> new Item.Properties());
 
-    /**
-     * Handler which listens for {@link BuildCreativeModeTabContentsEvent}, adding
-     * all items to the appropriate creative mode tab.
-     * */
-    private void addCreative(BuildCreativeModeTabContentsEvent event) {
-        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
-            event.accept(luminescence.get());
-        }
-    }
-
-    @Override
-    public void attachToEventBus(IEventBus eventBus){
-        items.register(eventBus);
-        eventBus.addListener(this::addCreative);
+    public static void attachToEventBus(IEventBus eventBus){
+        ITEMS.register(eventBus);
+        eventBus.addListener(getInstance()::addCreative);
     }
 
     public static ModItems getInstance(){
@@ -49,6 +38,16 @@ public final class ModItems implements EventBusAttachable {
             SINGLETON = new ModItems();
         }
         return SINGLETON;
+    }
+
+    /**
+     * Handler which listens for {@link BuildCreativeModeTabContentsEvent}, adding
+     * all items to the appropriate creative mode tab.
+     * */
+    private void addCreative(BuildCreativeModeTabContentsEvent event) {
+        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
+            event.accept(LUMINESCENCE.get());
+        }
     }
 
 }

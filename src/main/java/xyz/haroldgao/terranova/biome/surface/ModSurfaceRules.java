@@ -9,7 +9,7 @@ import xyz.haroldgao.terranova.block.ModBlocks;
 public class ModSurfaceRules {
     private static final SurfaceRules.RuleSource DIRT = makeStateRule(Blocks.DIRT);
     private static final SurfaceRules.RuleSource GRASS_BLOCK = makeStateRule(Blocks.GRASS_BLOCK);
-    private static final SurfaceRules.RuleSource LUMINESCENT_ICE = makeStateRule(ModBlocks.getInstance().luminescent_ice.get());
+    private static final SurfaceRules.RuleSource LUMINESCENT_ICE = makeStateRule(ModBlocks.getInstance().LUMINESCENT_ICE.get());
     private static final SurfaceRules.RuleSource PACKED_ICE = makeStateRule(Blocks.PACKED_ICE);
 
 

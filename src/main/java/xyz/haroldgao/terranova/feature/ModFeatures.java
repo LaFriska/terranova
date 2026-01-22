@@ -6,26 +6,23 @@ import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConf
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import xyz.haroldgao.terranova.EventBusAttachable;
 import xyz.haroldgao.terranova.TerraNova;
 
-public class ModFeatures implements EventBusAttachable {
+public class ModFeatures {
 
     private static ModFeatures SINGLETON = null;
 
-    public final DeferredRegister<Feature<?>> features = DeferredRegister.create(BuiltInRegistries.FEATURE, TerraNova.MODID);
+    public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(BuiltInRegistries.FEATURE, TerraNova.MODID);
 
-    public final DeferredHolder<Feature<?>, LuminescentIceSpikeFeature> luminescentIceSpike =
-            features.register(LuminescentIceSpikeFeature.NAME,
+    public static final DeferredHolder<Feature<?>, LuminescentIceSpikeFeature> LUMINESCENT_ICE_SPIKE =
+            FEATURES.register(LuminescentIceSpikeFeature.NAME,
                     () -> new LuminescentIceSpikeFeature(NoneFeatureConfiguration.CODEC));
 
     private ModFeatures(){
     }
 
-
-    @Override
-    public void attachToEventBus(IEventBus eventBus) {
-        features.register(eventBus);
+    public static void attachToEventBus(IEventBus eventBus) {
+        FEATURES.register(eventBus);
     }
 
     public static ModFeatures getInstance(){
