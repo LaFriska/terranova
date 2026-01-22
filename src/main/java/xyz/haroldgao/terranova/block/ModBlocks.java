@@ -23,8 +23,8 @@ public final class ModBlocks {
 
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(TerraNova.MODID);
 
-    public static final DeferredBlock<HalfTransparentBlock> LUMINESCENT_ICE
-            = registerBlock(LuminescentIceBlock.ID, LuminescentIceBlock::new, LuminescentIceBlock.PROPERTIES);
+    public static final DeferredBlock<HalfTransparentBlock> LUMINESCENT_ICE = registerBlock(LuminescentIceBlock.ID, LuminescentIceBlock::new, LuminescentIceBlock.PROPERTIES);
+    public static final DeferredBlock<Block> GLOW_DIRT = registerBlock(GlowDirtBlock.NAME, GlowDirtBlock::new, GlowDirtBlock.PROPERTIES);
 
     private ModBlocks(){
     }
@@ -60,6 +60,7 @@ public final class ModBlocks {
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
             event.accept(LUMINESCENT_ICE.get());
+            event.accept(GLOW_DIRT.get());
         }
     }
 
