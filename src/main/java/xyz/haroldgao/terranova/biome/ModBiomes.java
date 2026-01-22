@@ -6,11 +6,19 @@ import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.attribute.BackgroundMusic;
+import net.minecraft.world.attribute.EnvironmentAttributes;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeGenerationSettings;
+import net.minecraft.world.level.biome.BiomeSpecialEffects;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import xyz.haroldgao.terranova.TerraNova;
+
+import static net.minecraft.data.worldgen.biome.OverworldBiomes.calculateSkyColor;
 
 public class ModBiomes {
 
@@ -21,8 +29,8 @@ public class ModBiomes {
         return ResourceKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(TerraNova.MODID, name));
     }
 
-    public static void boostrap(BootstrapContext<Biome> context) {
-        context.register(DEEP_GLOW, testBiome(context));
+    public static void bootstrap(BootstrapContext<Biome> context) {
+        context.register(DEEP_GLOW, deepGlow(context));
     }
 
     public static void globalOverworldGeneration(BiomeGenerationSettings.Builder builder) {
@@ -34,19 +42,33 @@ public class ModBiomes {
         BiomeDefaultFeatures.addSurfaceFreezing(builder);
     }
 
-    public static Biome testBiome(BootstrapContext<Biome> context) {
-        MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
-//        spawnBuilder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ModEntities.RHINO.get(), 2, 3, 5));
-//        spawnBuilder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.WOLF, 5, 4, 4));
+    private static Biome.BiomeBuilder baseBiome(float temperature, float downfall) {
+        return (new Biome.BiomeBuilder())
+                .hasPrecipitation(true)
+                .temperature(temperature)
+                .downfall(downfall)
+                .setAttribute(EnvironmentAttributes.SKY_COLOR, calculateSkyColor(temperature))
+                .specialEffects((new BiomeSpecialEffects.Builder()).waterColor(4159204).build());
+    }
 
-        BiomeDefaultFeatures.farmAnimals(spawnBuilder);
+    public static Biome deepGlow(BootstrapContext<Biome> context) {
+
+        BiomeGenerationSettings.Builder biomeBuilder = new BiomeGenerationSettings.Builder(
+                context.lookup(Registries.PLACED_FEATURE), context.lookup(Registries.CONFIGURED_CARVER)
+        );
+
+        MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
+
+        //Glow squids
+        spawnBuilder.addSpawn(
+                MobCategory.WATER_CREATURE,
+                25,
+                new MobSpawnSettings.SpawnerData(EntityType.GLOW_SQUID, 4, 8)
+        );
         BiomeDefaultFeatures.commonSpawns(spawnBuilder);
 
-        BiomeGenerationSettings.Builder biomeBuilder =
-                new BiomeGenerationSettings.Builder(context.lookup(Registries.PLACED_FEATURE), context.lookup(Registries.CONFIGURED_CARVER));
         //we need to follow the same order as vanilla biomes for the BiomeDefaultFeatures
         globalOverworldGeneration(biomeBuilder);
-        BiomeDefaultFeatures.addMossyStoneBlock(biomeBuilder);
         BiomeDefaultFeatures.addForestFlowers(biomeBuilder);
         BiomeDefaultFeatures.addFerns(biomeBuilder);
         BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
@@ -57,13 +79,10 @@ public class ModBiomes {
         BiomeDefaultFeatures.addDefaultMushrooms(biomeBuilder);
         BiomeDefaultFeatures.addDefaultExtraVegetation(biomeBuilder, true);
 
-        return new Biome.BiomeBuilder()
-                .hasPrecipitation(true)
-                .downfall(0.8f)
-                .temperature(0.7f)
-                .generationSettings(biomeBuilder.build())
+        return baseBiome(0.5F, 0.5F)
+                .setAttribute(EnvironmentAttributes.BACKGROUND_MUSIC, new BackgroundMusic(SoundEvents.MUSIC_BIOME_LUSH_CAVES))
                 .mobSpawnSettings(spawnBuilder.build())
-                .build();
+                .generationSettings(biomeBuilder.build()).build();
     }
 
 }
