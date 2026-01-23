@@ -21,9 +21,8 @@ public class ModSurfaceRules {
         SurfaceRules.RuleSource grassSurface = SurfaceRules.sequence(SurfaceRules.ifTrue(isAtOrAboveWaterLevel, GRASS_BLOCK), DIRT);
 
         return sequence(
-                sequence(ifTrue(isBiome(ModBiomes.DEEP_GLOW), ifTrue(ON_FLOOR, LUM_GRASS_BLOCK)),
-                                ifTrue(ON_CEILING, GLOW_DIRT),
-                                ifTrue(UNDER_CEILING, GLOW_DIRT),
+                sequence(ifTrue(isBiome(ModBiomes.DEEP_GLOW),
+                                ifTrue(ON_FLOOR, LUM_GRASS_BLOCK)),
                                 ifTrue(UNDER_FLOOR, GLOW_DIRT)
                 ),
 

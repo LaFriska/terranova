@@ -28,13 +28,10 @@ public class ModOverworldRegion extends Region {
         new ParameterUtils.ParameterPointListBuilder()
                 .temperature(ParameterUtils.Temperature.span(Temperature.COOL, Temperature.FROZEN))
                 .humidity(Humidity.DRY)
-//                .continentalness(Continentalness.INLAND)
-                .depth(Climate.Parameter.span(0.7F, 1F))
+                .depth(Climate.Parameter.span(0.7F, 0.95F))
                 .weirdness(Climate.Parameter.span(-1, -0.5F))
-//                .erosion(Climate.Parameter.span(0F, 1))
                 .build().forEach(point -> builder.add(point, ModBiomes.DEEP_GLOW));
 
-        //seed for ancient city + deep glow: -9138410490720384662
 
         builder.build().forEach(mapper);
     }

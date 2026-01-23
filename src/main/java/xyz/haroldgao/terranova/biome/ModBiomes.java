@@ -36,6 +36,11 @@ public class ModBiomes {
     }
 
     public static void addDefaultCarversWithoutLakes(BiomeGenerationSettings.Builder builder) {
+        //TODO change
+        builder.addCarver(Carvers.CAVE);
+        builder.addCarver(Carvers.CAVE_EXTRA_UNDERGROUND);
+        builder.addCarver(Carvers.CAVE);
+        builder.addCarver(Carvers.CAVE_EXTRA_UNDERGROUND);
         builder.addCarver(Carvers.CAVE);
         builder.addCarver(Carvers.CAVE_EXTRA_UNDERGROUND);
         builder.addCarver(Carvers.CANYON);
@@ -70,7 +75,7 @@ public class ModBiomes {
         //Glow squids
         spawnBuilder.addSpawn(
                 MobCategory.WATER_CREATURE,
-                15,
+                5,
                 new MobSpawnSettings.SpawnerData(EntityType.GLOW_SQUID, 4, 8)
         );
         BiomeDefaultFeatures.commonSpawns(spawnBuilder);
@@ -87,7 +92,6 @@ public class ModBiomes {
         BiomeDefaultFeatures.addForestFlowers(biomeBuilder);
         BiomeDefaultFeatures.addFerns(biomeBuilder);
         BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
-        BiomeDefaultFeatures.addExtraGold(biomeBuilder);
 
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.TREES_PLAINS);
 
