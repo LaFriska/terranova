@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "terranova:block/glow_dirt",
+    "east": "terranova:block/luminescent_grass_block_side",
+    "north": "terranova:block/luminescent_grass_block_side",
+    "particle": "terranova:block/glow_dirt",
+    "south": "terranova:block/luminescent_grass_block_side",
+    "up": "terranova:block/luminescent_grass_block_top",
+    "west": "terranova:block/luminescent_grass_block_side"
+  }
+}

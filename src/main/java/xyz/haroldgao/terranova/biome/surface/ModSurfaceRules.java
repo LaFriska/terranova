@@ -7,25 +7,27 @@ import xyz.haroldgao.terranova.TerraNova;
 import xyz.haroldgao.terranova.biome.ModBiomes;
 import xyz.haroldgao.terranova.block.ModBlocks;
 
+import static net.minecraft.world.level.levelgen.SurfaceRules.*;
+
 public class ModSurfaceRules {
     private static final SurfaceRules.RuleSource DIRT = makeStateRule(Blocks.DIRT);
     private static final SurfaceRules.RuleSource GRASS_BLOCK = makeStateRule(Blocks.GRASS_BLOCK);
     private static final SurfaceRules.RuleSource GLOW_DIRT = makeStateRule(ModBlocks.GLOW_DIRT.get());
-
+    private static final SurfaceRules.RuleSource LUM_GRASS_BLOCK = makeStateRule(ModBlocks.LUMINESCENT_GRASS_BLOCK.get());
 
     public static SurfaceRules.RuleSource makeRules() {
         SurfaceRules.ConditionSource isAtOrAboveWaterLevel = SurfaceRules.waterBlockCheck(-1, 0);
 
         SurfaceRules.RuleSource grassSurface = SurfaceRules.sequence(SurfaceRules.ifTrue(isAtOrAboveWaterLevel, GRASS_BLOCK), DIRT);
 
-        return SurfaceRules.sequence(
-                SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.DEEP_GLOW),
-                                SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, GLOW_DIRT)),
-                        SurfaceRules.ifTrue(SurfaceRules.ON_CEILING, GLOW_DIRT)),
+        return sequence(
+                sequence(ifTrue(isBiome(ModBiomes.DEEP_GLOW), ifTrue(ON_FLOOR, LUM_GRASS_BLOCK)),
+                                ifTrue(ON_CEILING, GLOW_DIRT),
+                                ifTrue(UNDER_CEILING, GLOW_DIRT),
+                                ifTrue(UNDER_FLOOR, GLOW_DIRT)
+                ),
 
-
-                // Default to a grass and dirt surface
-                SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, grassSurface)
+                ifTrue(ON_FLOOR, grassSurface)
         );
     }
 

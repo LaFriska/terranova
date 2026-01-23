@@ -3,6 +3,8 @@ package xyz.haroldgao.terranova.biome;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.Carvers;
+import net.minecraft.data.worldgen.placement.MiscOverworldPlacements;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
@@ -31,6 +33,12 @@ public class ModBiomes {
 
     public static void bootstrap(BootstrapContext<Biome> context) {
         context.register(DEEP_GLOW, deepGlow(context));
+    }
+
+    public static void addDefaultCarversWithoutLakes(BiomeGenerationSettings.Builder builder) {
+        builder.addCarver(Carvers.CAVE);
+        builder.addCarver(Carvers.CAVE_EXTRA_UNDERGROUND);
+        builder.addCarver(Carvers.CANYON);
     }
 
     public static void globalOverworldGeneration(BiomeGenerationSettings.Builder builder) {
@@ -62,13 +70,20 @@ public class ModBiomes {
         //Glow squids
         spawnBuilder.addSpawn(
                 MobCategory.WATER_CREATURE,
-                25,
+                15,
                 new MobSpawnSettings.SpawnerData(EntityType.GLOW_SQUID, 4, 8)
         );
         BiomeDefaultFeatures.commonSpawns(spawnBuilder);
 
         //we need to follow the same order as vanilla biomes for the BiomeDefaultFeatures
-        globalOverworldGeneration(biomeBuilder);
+
+        addDefaultCarversWithoutLakes(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultCrystalFormations(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultMonsterRoom(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultUndergroundVariety(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultSprings(biomeBuilder);
+        BiomeDefaultFeatures.addSurfaceFreezing(biomeBuilder);
+
         BiomeDefaultFeatures.addForestFlowers(biomeBuilder);
         BiomeDefaultFeatures.addFerns(biomeBuilder);
         BiomeDefaultFeatures.addDefaultOres(biomeBuilder);

@@ -6,7 +6,6 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.HalfTransparentBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
@@ -23,8 +22,9 @@ public final class ModBlocks {
 
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(TerraNova.MODID);
 
-    public static final DeferredBlock<HalfTransparentBlock> LUMINESCENT_ICE = registerBlock(LuminescentIceBlock.ID, LuminescentIceBlock::new, LuminescentIceBlock.PROPERTIES);
-    public static final DeferredBlock<Block> GLOW_DIRT = registerBlock(GlowDirtBlock.NAME, GlowDirtBlock::new, GlowDirtBlock.PROPERTIES);
+    public static final DeferredBlock<LuminescentIceBlock> LUMINESCENT_ICE = registerBlock(LuminescentIceBlock.ID, LuminescentIceBlock::new, LuminescentIceBlock.PROPERTIES);
+    public static final DeferredBlock<GlowDirtBlock> GLOW_DIRT = registerBlock(GlowDirtBlock.NAME, GlowDirtBlock::new, GlowDirtBlock.PROPERTIES);
+    public static final DeferredBlock<LuminescentGrassBlock> LUMINESCENT_GRASS_BLOCK = registerBlock(LuminescentGrassBlock.NAME, LuminescentGrassBlock::new, LuminescentGrassBlock.PROPERTIES);
 
     private ModBlocks(){
     }
@@ -61,6 +61,7 @@ public final class ModBlocks {
         if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
             event.accept(LUMINESCENT_ICE.get());
             event.accept(GLOW_DIRT.get());
+            event.accept(LUMINESCENT_GRASS_BLOCK.get());
         }
     }
 
