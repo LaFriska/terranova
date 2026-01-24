@@ -1,4 +1,4 @@
-package xyz.haroldgao.terranova.datagen;
+package xyz.haroldgao.terranova.datagen.provider;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;

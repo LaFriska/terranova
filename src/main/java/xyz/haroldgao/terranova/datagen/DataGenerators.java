@@ -7,6 +7,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import xyz.haroldgao.terranova.TerraNova;
+import xyz.haroldgao.terranova.datagen.provider.ModWorldGenProvider;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -19,7 +20,10 @@ public class DataGenerators {
         PackOutput output = generator.getPackOutput();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
+        //World gen provider
         generator.addProvider(true, new ModWorldGenProvider(output, lookupProvider));
+
+        //Block model
 
     }
 }
